@@ -1,0 +1,3 @@
+module.exports=[504009,a=>{a.v({title:"审计日志",stats:{totalOperations:"总操作数",operationsToday:"今日操作",verifiedCount:"已验证数量"},filters:{action:"操作类型",allActions:"所有操作",search:"搜索",searchPlaceholder:"搜索日志..."},table:{time:"时间",user:"用户",action:"操作",ipAddress:"IP地址",details:"详情"},pagination:{showing:"显示 {{from}} 到 {{to}}，共 {{total}} 条",previous:"上一页",next:"下一页"},loading:"加载中..."})}];
+
+//# sourceMappingURL=i18n_zh-Hans_audit-logs_json_50abc906._.js.map

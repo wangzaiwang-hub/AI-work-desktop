@@ -1,0 +1,3 @@
+module.exports=[413041,a=>{a.v({allTags:"Tous les mots-clés",searchTags:"Mots-clés de recherche","tags.agent":"Agent","tags.business":"Affaire","tags.design":"Concevoir","tags.education":"Éducation","tags.entertainment":"Divertissement","tags.finance":"Finance","tags.image":"Image","tags.medical":"Médical","tags.news":"Nouvelles","tags.other":"Autre","tags.productivity":"Productivité","tags.rag":"CHIFFON","tags.search":"Rechercher","tags.social":"Social","tags.travel":"Voyager","tags.utilities":"Utilitaires","tags.videos":"Vidéos","tags.weather":"Temps"})}];
+
+//# sourceMappingURL=i18n_fr-FR_plugin-tags_json_de43a287._.js.map

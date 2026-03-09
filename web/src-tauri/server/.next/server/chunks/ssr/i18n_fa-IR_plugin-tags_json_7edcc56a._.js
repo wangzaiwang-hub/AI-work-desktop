@@ -1,0 +1,3 @@
+module.exports=[281241,a=>{a.v({allTags:"همه برچسب ها",searchTags:"جستجو برچسب ها","tags.agent":"عامل","tags.business":"تجاری","tags.design":"طراحی","tags.education":"آموزش","tags.entertainment":"سرگرمی","tags.finance":"مالی","tags.image":"تصویر","tags.medical":"پزشکی","tags.news":"اخبار","tags.other":"دیگر","tags.productivity":"بهره وری","tags.rag":"پوش","tags.search":"جستجو","tags.social":"اجتماعی","tags.travel":"سفر","tags.utilities":"تاسیسات","tags.videos":"فیلم","tags.weather":"هوا"})}];
+
+//# sourceMappingURL=i18n_fa-IR_plugin-tags_json_7edcc56a._.js.map

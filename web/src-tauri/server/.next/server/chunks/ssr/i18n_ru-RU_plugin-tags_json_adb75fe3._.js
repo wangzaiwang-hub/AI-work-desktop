@@ -1,0 +1,3 @@
+module.exports=[356401,a=>{a.v({allTags:"Все теги",searchTags:"Поиск тегов","tags.agent":"Агент","tags.business":"Дело","tags.design":"Проектировать","tags.education":"Образование","tags.entertainment":"Развлечение","tags.finance":"Финансировать","tags.image":"Образ","tags.medical":"Медицинский","tags.news":"Новости","tags.other":"Другой","tags.productivity":"Продуктивность","tags.rag":"ТРЯПКА","tags.search":"Искать","tags.social":"Общественный","tags.travel":"Путешествовать","tags.utilities":"Коммунальные услуги","tags.videos":"Видео","tags.weather":"Погода"})}];
+
+//# sourceMappingURL=i18n_ru-RU_plugin-tags_json_adb75fe3._.js.map

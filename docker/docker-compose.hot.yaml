@@ -1,0 +1,7 @@
+services:
+  api:
+    environment:
+      - DEBUG=true
+      - FLASK_DEBUG=true
+      - DIFY_BIND_ADDRESS=0.0.0.0
+      - DIFY_PORT=5001

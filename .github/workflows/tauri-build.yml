@@ -1,0 +1,203 @@
+name: Build CheersAI Desktop
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform: windows-latest
+            target: x86_64-pc-windows-msvc
+          - platform: macos-latest
+            target: aarch64-apple-darwin
+          - platform: macos-13
+            target: x86_64-apple-darwin
+          - platform: ubuntu-22.04
+            target: x86_64-unknown-linux-gnu
+
+    runs-on: ${{ matrix.platform }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.target }}
+
+      - name: Rust cache
+        uses: swatinem/rust-cache@v2
+        with:
+          workspaces: web/src-tauri -> target
+
+      - name: Install Linux dependencies
+        if: matrix.platform == 'ubuntu-22.04'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf
+
+      - name: Install frontend dependencies
+        working-directory: web
+        run: pnpm install --frozen-lockfile
+
+      - name: Create .env.local for build
+        working-directory: web
+        shell: bash
+        run: |
+          cp .env.example .env.local
+          # Override for production build
+          sed -i.bak 's/NEXT_PUBLIC_DEPLOY_ENV=DEVELOPMENT/NEXT_PUBLIC_DEPLOY_ENV=PRODUCTION/' .env.local
+          rm -f .env.local.bak
+
+      - name: Prepare for Tauri static build
+        working-directory: web
+        shell: bash
+        run: |
+          # Backup files
+          cp app/layout.tsx app/layout.tsx.ci-backup
+          cp next.config.ts next.config.ts.ci-backup
+
+          # Disable Google Fonts (already commented but ensure clean)
+          sed -i.bak \
+            -e "s|import { Instrument_Serif } from 'next/font/google'|// \0|" \
+            -e "s|const instrumentSerif = Instrument_Serif|// \0|" \
+            -e "s|className={cn(instrumentSerif\.className,|className={cn(|g" \
+            app/layout.tsx
+          rm -f app/layout.tsx.bak
+
+          # Patch next.config.ts for static export using line-by-line approach
+          node <<'PATCH_EOF'
+          const fs = require('fs');
+          const lines = fs.readFileSync('next.config.ts', 'utf-8').split('\n');
+          let inImages = false, inRedirects = false, braceDepth = 0;
+          const out = [];
+          for (const line of lines) {
+            // Track images block
+            if (/^\s*images:\s*\{/.test(line)) { inImages = true; braceDepth = 0; }
+            if (/^\s*async redirects\(\)/.test(line)) { inRedirects = true; braceDepth = 0; }
+            if (inImages || inRedirects) {
+              for (const ch of line) { if (ch === '{') braceDepth++; if (ch === '}') braceDepth--; }
+              if (braceDepth <= 0 && (inImages || inRedirects)) {
+                inImages = false; inRedirects = false;
+                continue; // skip the closing line too
+              }
+              continue; // skip lines inside the block
+            }
+            // Change output
+            out.push(line.replace("output: 'standalone'", "output: 'export'"));
+          }
+          fs.writeFileSync('next.config.ts', out.join('\n'));
+          console.log('Patched next.config.ts for static export');
+          PATCH_EOF
+
+      - name: Remove dynamic routes for static export
+        working-directory: web
+        shell: bash
+        run: |
+          # Find all directories with [param] pattern and remove them
+          # These routes require runtime params and can't work with output: 'export'
+          # In Tauri, client-side routing handles them at runtime
+          find app -type d -name '\[*\]' | sort -r | while read dir; do
+            echo "🗑️  Removing $dir"
+            rm -rf "$dir"
+          done
+          echo "✅ All dynamic route directories removed"
+
+      - name: Build Next.js static export
+        working-directory: web
+        run: pnpm build
+        env:
+          NEXT_TELEMETRY_DISABLED: 1
+
+      - name: Build Tauri app
+        working-directory: web
+        run: pnpm tauri build --target ${{ matrix.target }}
+
+      - name: Restore modified files
+        if: always()
+        working-directory: web
+        shell: bash
+        run: |
+          [ -f app/layout.tsx.ci-backup ] && mv app/layout.tsx.ci-backup app/layout.tsx
+          [ -f next.config.ts.ci-backup ] && mv next.config.ts.ci-backup next.config.ts
+          rm -f .env.local
+
+      # Upload platform-specific artifacts
+      - name: Upload Windows artifacts
+        if: matrix.platform == 'windows-latest'
+        uses: actions/upload-artifact@v4
+        with:
+          name: CheersAI-windows-x64
+          path: |
+            web/src-tauri/target/x86_64-pc-windows-msvc/release/bundle/msi/*.msi
+            web/src-tauri/target/x86_64-pc-windows-msvc/release/bundle/nsis/*.exe
+
+      - name: Upload macOS artifacts (aarch64)
+        if: matrix.platform == 'macos-latest'
+        uses: actions/upload-artifact@v4
+        with:
+          name: CheersAI-macos-aarch64
+          path: |
+            web/src-tauri/target/aarch64-apple-darwin/release/bundle/dmg/*.dmg
+            web/src-tauri/target/aarch64-apple-darwin/release/bundle/macos/*.app
+
+      - name: Upload macOS artifacts (x86_64)
+        if: matrix.platform == 'macos-13'
+        uses: actions/upload-artifact@v4
+        with:
+          name: CheersAI-macos-x64
+          path: |
+            web/src-tauri/target/x86_64-apple-darwin/release/bundle/dmg/*.dmg
+            web/src-tauri/target/x86_64-apple-darwin/release/bundle/macos/*.app
+
+      - name: Upload Linux artifacts
+        if: matrix.platform == 'ubuntu-22.04'
+        uses: actions/upload-artifact@v4
+        with:
+          name: CheersAI-linux-x64
+          path: |
+            web/src-tauri/target/x86_64-unknown-linux-gnu/release/bundle/deb/*.deb
+            web/src-tauri/target/x86_64-unknown-linux-gnu/release/bundle/appimage/*.AppImage
+
+  release:
+    needs: build
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+
+      - name: List artifacts
+        run: find artifacts -type f | head -50
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: CheersAI Desktop ${{ github.ref_name }}
+          draft: true
+          generate_release_notes: true
+          files: |
+            artifacts/**/*.exe
+            artifacts/**/*.msi
+            artifacts/**/*.dmg
+            artifacts/**/*.deb
+            artifacts/**/*.AppImage

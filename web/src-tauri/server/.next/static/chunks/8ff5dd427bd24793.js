@@ -1,0 +1,1 @@
+(globalThis.TURBOPACK||(globalThis.TURBOPACK=[])).push(["object"==typeof document?document.currentScript:void 0,604210,i=>{i.v({"sidebar.collapseSidebar":"Strni stransko vrstico","sidebar.expandSidebar":"Razširi stransko vrstico"})}]);

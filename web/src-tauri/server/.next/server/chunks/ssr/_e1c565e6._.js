@@ -1,0 +1,85 @@
+module.exports=[735310,a=>{"use strict";var b,c,d,e,f,g,h,i,j,k,l,m,n,o=((b={}).Start="start",b.End="end",b.Answer="answer",b.LLM="llm",b.KnowledgeRetrieval="knowledge-retrieval",b.QuestionClassifier="question-classifier",b.IfElse="if-else",b.Code="code",b.TemplateTransform="template-transform",b.HttpRequest="http-request",b.VariableAssigner="variable-assigner",b.VariableAggregator="variable-aggregator",b.Tool="tool",b.ParameterExtractor="parameter-extractor",b.Iteration="iteration",b.DocExtractor="document-extractor",b.ListFilter="list-operator",b.IterationStart="iteration-start",b.Assigner="assigner",b.Agent="agent",b.Loop="loop",b.LoopStart="loop-start",b.LoopEnd="loop-end",b.DataSource="datasource",b.DataSourceEmpty="datasource-empty",b.KnowledgeBase="knowledge-index",b.TriggerSchedule="trigger-schedule",b.TriggerWebhook="trigger-webhook",b.TriggerPlugin="trigger-plugin",b),p=((c={}).Pointer="pointer",c.Hand="hand",c),q=((d={}).Terminated="terminated",d.ContinueOnError="continue-on-error",d.RemoveAbnormalOutput="remove-abnormal-output",d),r=((e={}).textInput="text-input",e.paragraph="paragraph",e.select="select",e.number="number",e.checkbox="checkbox",e.url="url",e.files="files",e.json="json",e.jsonObject="json_object",e.contexts="contexts",e.iterator="iterator",e.singleFile="file",e.multiFiles="file-list",e.loop="loop",e),s=((f={}).system="system",f.user="user",f.assistant="assistant",f),t=((g={}).basic="basic",g.jinja2="jinja2",g),u=((h={}).user="user",h.assistant="assistant",h),v=((i={}).string="string",i.number="number",i.integer="integer",i.secret="secret",i.boolean="boolean",i.object="object",i.file="file",i.array="array",i.arrayString="array[string]",i.arrayNumber="array[number]",i.arrayObject="array[object]",i.arrayBoolean="array[boolean]",i.arrayFile="array[file]",i.any="any",i.arrayAny="array[any]",i),w=((j={}).variable="variable",j.constant="constant",j),x=((k={}).Waiting="waiting",k.Running="running",k.Succeeded="succeeded",k.Failed="failed",k.Stopped="stopped",k),y=((l={}).NotStart="not-start",l.Waiting="waiting",l.Listening="listening",l.Running="running",l.Succeeded="succeeded",l.Failed="failed",l.Exception="exception",l.Retry="retry",l.Stopped="stopped",l),z=((m={}).changeVarName="changeVarName",m.remove="remove",m),A=((n={}).image="image",n.document="document",n.audio="audio",n.video="video",n.custom="custom",n);let B=["trigger-schedule","trigger-webhook","trigger-plugin"];function C(a){return B.includes(a)}a.s(["BlockEnum",()=>o,"ChangeType",()=>z,"ControlMode",()=>p,"EditionType",()=>t,"ErrorHandleMode",()=>q,"InputVarType",()=>r,"MemoryRole",()=>u,"NodeRunningStatus",()=>y,"PromptRole",()=>s,"SupportUploadFileTypes",()=>A,"ValueType",()=>w,"VarType",()=>v,"WorkflowRunningStatus",()=>x,"isTriggerNode",()=>C])},158873,818908,827460,a=>{"use strict";var b,c,d,e,f,g,h=((b={}).simple="simple",b.advanced="advanced",b),i=((c={}).system="system",c.user="user",c.assistant="assistant",c);a.s(["PromptMode",()=>h,"PromptRole",()=>i],158873);var j=((d={}).textInput="text-input",d.paragraph="paragraph",d.numberInput="number-input",d.checkbox="checkbox",d.select="select",d.file="file",d.fileList="file-list",d);a.s(["BaseFieldType",()=>j],818908);var k=((e={}).localFile="local_file",e.onlineDocument="online_document",e.websiteCrawl="website_crawl",e.onlineDrive="online_drive",e),l=((f={}).textInput="text-input",f.paragraph="paragraph",f.select="select",f.number="number",f.singleFile="file",f.multiFiles="file-list",f.checkbox="checkbox",f);let m={"text-input":j.textInput,paragraph:j.paragraph,select:j.select,file:j.file,"file-list":j.fileList,number:j.numberInput,checkbox:j.checkbox};var n=((g={}).file="file",g.folder="folder",g.bucket="bucket",g);a.s(["DatasourceType",()=>k,"OnlineDriveFileType",()=>n,"PipelineInputVarType",()=>l,"VAR_TYPE_MAP",0,m],827460)},954200,a=>{"use strict";var b,c,d,e,f,g,h,i,j,k=((b={}).light="light",b.dark="dark",b.system="system",b),l=((c={}).chat="chat",c.completion="completion",c.unset="",c),m=((d={}).oneWay="single",d.multiWay="multiple",d),n=((e={}).semantic="semantic_search",e.fullText="full_text_search",e.hybrid="hybrid_search",e.invertedIndex="invertedIndex",e.keywordSearch="keyword_search",e),o=((f={}).COMPLETION="completion",f.WORKFLOW="workflow",f.CHAT="chat",f.ADVANCED_CHAT="advanced-chat",f.AGENT_CHAT="agent-chat",f),p=((g={}).functionCall="function_call",g.react="react",g),q=((h={}).low="low",h.high="high",h),r=((i={}).all="all",i.local_file="local_file",i.remote_url="remote_url",i),s=((j={}).enabled="enabled",j.disabled="disabled",j);a.s(["ALLOW_FILE_EXTENSIONS",0,["png","jpg","jpeg","webp","gif"],"AgentStrategy",()=>p,"AppModeEnum",()=>o,"ModelModeType",()=>l,"RETRIEVE_METHOD",()=>n,"RETRIEVE_TYPE",()=>m,"Resolution",()=>q,"Theme",()=>k,"TransferMethod",()=>r,"TtsAutoPlay",()=>s])},18039,850953,a=>{"use strict";var b,c,d,e,f=a.i(735310),g=a.i(158873),h=a.i(827460),i=a.i(954200),j=((b={}).SAML="saml",b.OIDC="oidc",b.OAuth2="oauth2",b),k=((c={}).NONE="none",c.INACTIVE="inactive",c.ACTIVE="active",c.EXPIRING="expiring",c.EXPIRED="expired",c.LOST="lost",c),l=((d={}).ALL="all",d.NONE="none",d.OFFICIAL_ONLY="official_only",d.OFFICIAL_AND_PARTNER="official_and_specific_partners",d),m=((e={}).DATA_API_PREFIX="data-api-prefix",e.DATA_PUBLIC_API_PREFIX="data-public-api-prefix",e.DATA_MARKETPLACE_API_PREFIX="data-marketplace-api-prefix",e.DATA_MARKETPLACE_URL_PREFIX="data-marketplace-url-prefix",e.DATA_PUBLIC_EDITION="data-public-edition",e.DATA_PUBLIC_AMPLITUDE_API_KEY="data-public-amplitude-api-key",e.DATA_PUBLIC_COOKIE_DOMAIN="data-public-cookie-domain",e.DATA_PUBLIC_SUPPORT_MAIL_LOGIN="data-public-support-mail-login",e.DATA_PUBLIC_SENTRY_DSN="data-public-sentry-dsn",e.DATA_PUBLIC_MAINTENANCE_NOTICE="data-public-maintenance-notice",e.DATA_PUBLIC_SITE_ABOUT="data-public-site-about",e.DATA_PUBLIC_TEXT_GENERATION_TIMEOUT_MS="data-public-text-generation-timeout-ms",e.DATA_PUBLIC_MAX_TOOLS_NUM="data-public-max-tools-num",e.DATA_PUBLIC_MAX_PARALLEL_LIMIT="data-public-max-parallel-limit",e.DATA_PUBLIC_TOP_K_MAX_VALUE="data-public-top-k-max-value",e.DATA_PUBLIC_INDEXING_MAX_SEGMENTATION_TOKENS_LENGTH="data-public-indexing-max-segmentation-tokens-length",e.DATA_PUBLIC_LOOP_NODE_MAX_COUNT="data-public-loop-node-max-count",e.DATA_PUBLIC_MAX_ITERATIONS_NUM="data-public-max-iterations-num",e.DATA_PUBLIC_MAX_TREE_DEPTH="data-public-max-tree-depth",e.DATA_PUBLIC_ALLOW_UNSAFE_DATA_SCHEME="data-public-allow-unsafe-data-scheme",e.DATA_PUBLIC_ENABLE_WEBSITE_JINAREADER="data-public-enable-website-jinareader",e.DATA_PUBLIC_ENABLE_WEBSITE_FIRECRAWL="data-public-enable-website-firecrawl",e.DATA_PUBLIC_ENABLE_WEBSITE_WATERCRAWL="data-public-enable-website-watercrawl",e.DATA_PUBLIC_ENABLE_SINGLE_DOLLAR_LATEX="data-public-enable-single-dollar-latex",e.NEXT_PUBLIC_ZENDESK_WIDGET_KEY="next-public-zendesk-widget-key",e.NEXT_PUBLIC_ZENDESK_FIELD_ID_ENVIRONMENT="next-public-zendesk-field-id-environment",e.NEXT_PUBLIC_ZENDESK_FIELD_ID_VERSION="next-public-zendesk-field-id-version",e.NEXT_PUBLIC_ZENDESK_FIELD_ID_EMAIL="next-public-zendesk-field-id-email",e.NEXT_PUBLIC_ZENDESK_FIELD_ID_WORKSPACE_ID="next-public-zendesk-field-id-workspace-id",e.NEXT_PUBLIC_ZENDESK_FIELD_ID_PLAN="next-public-zendesk-field-id-plan",e.DATA_PUBLIC_BATCH_CONCURRENCY="data-public-batch-concurrency",e);a.s(["DatasetAttr",()=>m,"InstallationScope",()=>l,"LicenseStatus",()=>k,"SSOProtocol",()=>j,"defaultSystemFeatures",0,{trial_models:[],plugin_installation_permission:{plugin_installation_scope:"all",restrict_to_marketplace_only:!1},sso_enforced_for_signin:!1,sso_enforced_for_signin_protocol:"",sso_enforced_for_web:!1,sso_enforced_for_web_protocol:"",enable_marketplace:!1,enable_change_email:!1,enable_email_code_login:!1,enable_email_password_login:!1,enable_social_oauth_login:!1,is_allow_create_workspace:!1,is_allow_register:!1,is_email_setup:!1,license:{status:"none",expired_at:""},branding:{enabled:!1,login_page_logo:"",workspace_logo:"",favicon:"",application_title:"test title"},webapp_auth:{enabled:!1,allow_sso:!1,sso_config:{protocol:""},allow_email_code_login:!1,allow_email_password_login:!1},enable_trial_app:!1,enable_explore_banner:!1}],850953);var n=a.i(804730);let o=(a,b,c=!0)=>{if(void 0!==a&&""!==a)return"true"===a;let d=globalThis.document?.body?.getAttribute(b);return void 0!==d&&""!==d?"true"===d:c},p=(a,b,c)=>{if(a){let b=Number.parseInt(a);if(!Number.isNaN(b)&&b>0)return b}let d=globalThis.document?.body?.getAttribute(b);if(d){let a=Number.parseInt(d);if(!Number.isNaN(a)&&a>0)return a}return c},q=(a,b,c)=>{if(a)return a;let d=globalThis.document?.body?.getAttribute(b);return d||c},r=a=>{let b=a.trim();if(!b||/^https?:\/\//i.test(b))return b;if(b.startsWith("/")){let a=globalThis.location?.origin;if(a)return new URL(b,a).toString()}return b},s=r(q(process.env.NEXT_PUBLIC_API_PREFIX,m.DATA_API_PREFIX,"http://localhost:5001/console/api")),t=r(q(process.env.NEXT_PUBLIC_PUBLIC_API_PREFIX,m.DATA_PUBLIC_API_PREFIX,"http://localhost:5001/api")),u=r(q(process.env.NEXT_PUBLIC_MARKETPLACE_API_PREFIX,m.DATA_MARKETPLACE_API_PREFIX,"http://localhost:5002/api")),v=q(process.env.NEXT_PUBLIC_MARKETPLACE_URL_PREFIX,m.DATA_MARKETPLACE_URL_PREFIX,""),w=q(process.env.NEXT_PUBLIC_EDITION,m.DATA_PUBLIC_EDITION,"SELF_HOSTED"),x=q(process.env.NEXT_PUBLIC_AMPLITUDE_API_KEY,m.DATA_PUBLIC_AMPLITUDE_API_KEY,"");process.env.NEXT_PUBLIC_SUPPORT_MAIL_LOGIN||globalThis.document?.body?.getAttribute("data-public-support-mail-login");let y={prompt:[{role:g.PromptRole.system,text:""}]},z=q(process.env.NEXT_PUBLIC_COOKIE_DOMAIN,m.DATA_PUBLIC_COOKIE_DOMAIN,"").trim(),A=p(process.env.NEXT_PUBLIC_BATCH_CONCURRENCY,m.DATA_PUBLIC_BATCH_CONCURRENCY,5),B=/^[\u4E00-\u9FA5]$/m,C={variable:"",label:"",type:f.InputVarType.textInput,required:!0,options:[]};h.PipelineInputVarType.textInput;let D={enabled:!1,max_iteration:10,strategy:i.AgentStrategy.functionCall,tools:[]},E={chat:`Respond to the human as helpfully and accurately as possible.
+
+{{instruction}}
+
+You have access to the following tools:
+
+{{tools}}
+
+Use a json blob to specify a tool by providing an {{TOOL_NAME_KEY}} key (tool name) and an {{ACTION_INPUT_KEY}} key (tool input).
+Valid "{{TOOL_NAME_KEY}}" values: "Final Answer" or {{tool_names}}
+
+Provide only ONE action per $JSON_BLOB, as shown:
+
+\`\`\`
+{
+  "{{TOOL_NAME_KEY}}": $TOOL_NAME,
+  "{{ACTION_INPUT_KEY}}": $ACTION_INPUT
+}
+\`\`\`
+
+Follow this format:
+
+Question: input question to answer
+Thought: consider previous and subsequent steps
+Action:
+\`\`\`
+$JSON_BLOB
+\`\`\`
+Observation: action result
+... (repeat Thought/Action/Observation N times)
+Thought: I know what to respond
+Action:
+\`\`\`
+{
+  "{{TOOL_NAME_KEY}}": "Final Answer",
+  "{{ACTION_INPUT_KEY}}": "Final response to human"
+}
+\`\`\`
+
+Begin! Reminder to ALWAYS respond with a valid json blob of a single action. Use tools if necessary. Respond directly if appropriate. Format is Action:\`\`\`$JSON_BLOB\`\`\`then Observation:.`,completion:`
+Respond to the human as helpfully and accurately as possible.
+
+{{instruction}}
+
+You have access to the following tools:
+
+{{tools}}
+
+Use a json blob to specify a tool by providing an {{TOOL_NAME_KEY}} key (tool name) and an {{ACTION_INPUT_KEY}} key (tool input).
+Valid "{{TOOL_NAME_KEY}}" values: "Final Answer" or {{tool_names}}
+
+Provide only ONE action per $JSON_BLOB, as shown:
+
+\`\`\`
+{{{{
+  "{{TOOL_NAME_KEY}}": $TOOL_NAME,
+  "{{ACTION_INPUT_KEY}}": $ACTION_INPUT
+}}}}
+\`\`\`
+
+Follow this format:
+
+Question: input question to answer
+Thought: consider previous and subsequent steps
+Action:
+\`\`\`
+$JSON_BLOB
+\`\`\`
+Observation: action result
+... (repeat Thought/Action/Observation N times)
+Thought: I know what to respond
+Action:
+\`\`\`
+{{{{
+  "{{TOOL_NAME_KEY}}": "Final Answer",
+  "{{ACTION_INPUT_KEY}}": "Final response to human"
+}}}}
+\`\`\`
+
+Begin! Reminder to ALWAYS respond with a valid json blob of a single action. Use tools if necessary. Respond directly if appropriate. Format is Action:\`\`\`$JSON_BLOB\`\`\`then Observation:.
+Question: {{query}}
+Thought: {{agent_scratchpad}}
+  `},F=/\{\{(#[\w-]{1,50}(\.\d+)?(\.[a-z_]\w{0,29}){1,10}#)\}\}/gi,G="true"===process.env.NEXT_PUBLIC_DISABLE_UPLOAD_IMAGE_AS_ICON,H=process.env.NEXT_PUBLIC_GITHUB_ACCESS_TOKEN||"",I=p(process.env.NEXT_PUBLIC_MAX_TOOLS_NUM,m.DATA_PUBLIC_MAX_TOOLS_NUM,10),J=p(process.env.NEXT_PUBLIC_MAX_PARALLEL_LIMIT,m.DATA_PUBLIC_MAX_PARALLEL_LIMIT,10),K=p(process.env.NEXT_PUBLIC_TEXT_GENERATION_TIMEOUT_MS,m.DATA_PUBLIC_TEXT_GENERATION_TIMEOUT_MS,6e4),L=p(process.env.NEXT_PUBLIC_LOOP_NODE_MAX_COUNT,m.DATA_PUBLIC_LOOP_NODE_MAX_COUNT,100),M=p(process.env.NEXT_PUBLIC_MAX_ITERATIONS_NUM,m.DATA_PUBLIC_MAX_ITERATIONS_NUM,99),N=p(process.env.NEXT_PUBLIC_MAX_TREE_DEPTH,m.DATA_PUBLIC_MAX_TREE_DEPTH,50),O=o(process.env.NEXT_PUBLIC_ALLOW_UNSAFE_DATA_SCHEME,m.DATA_PUBLIC_ALLOW_UNSAFE_DATA_SCHEME,!1),P=o(process.env.NEXT_PUBLIC_ENABLE_WEBSITE_JINAREADER,m.DATA_PUBLIC_ENABLE_WEBSITE_JINAREADER,!0),Q=o(process.env.NEXT_PUBLIC_ENABLE_WEBSITE_FIRECRAWL,m.DATA_PUBLIC_ENABLE_WEBSITE_FIRECRAWL,!0),R=o(process.env.NEXT_PUBLIC_ENABLE_WEBSITE_WATERCRAWL,m.DATA_PUBLIC_ENABLE_WEBSITE_WATERCRAWL,!1);o(process.env.NEXT_PUBLIC_ENABLE_SINGLE_DOLLAR_LATEX,m.DATA_PUBLIC_ENABLE_SINGLE_DOLLAR_LATEX,!1);let S=q(process.env.NEXT_PUBLIC_ZENDESK_WIDGET_KEY,m.NEXT_PUBLIC_ZENDESK_WIDGET_KEY,""),T={ENVIRONMENT:q(process.env.NEXT_PUBLIC_ZENDESK_FIELD_ID_ENVIRONMENT,m.NEXT_PUBLIC_ZENDESK_FIELD_ID_ENVIRONMENT,""),VERSION:q(process.env.NEXT_PUBLIC_ZENDESK_FIELD_ID_VERSION,m.NEXT_PUBLIC_ZENDESK_FIELD_ID_VERSION,""),EMAIL:q(process.env.NEXT_PUBLIC_ZENDESK_FIELD_ID_EMAIL,m.NEXT_PUBLIC_ZENDESK_FIELD_ID_EMAIL,""),WORKSPACE_ID:q(process.env.NEXT_PUBLIC_ZENDESK_FIELD_ID_WORKSPACE_ID,m.NEXT_PUBLIC_ZENDESK_FIELD_ID_WORKSPACE_ID,""),PLAN:q(process.env.NEXT_PUBLIC_ZENDESK_FIELD_ID_PLAN,m.NEXT_PUBLIC_ZENDESK_FIELD_ID_PLAN,"")},U=n.default.version,V=globalThis.document?.body?.getAttribute("data-is-marketplace")==="true";a.s(["ACCESS_TOKEN_LOCAL_STORAGE_NAME",0,"access_token","ALLOW_UNSAFE_DATA_SCHEME",0,O,"AMPLITUDE_API_KEY",0,x,"ANNOTATION_DEFAULT",0,{score_threshold:.9},"API_PREFIX",0,s,"APP_PAGE_LIMIT",0,10,"APP_VERSION",0,U,"BATCH_CONCURRENCY",0,A,"CSRF_COOKIE_NAME",0,()=>z?"csrf_token":s.startsWith("https://")?"__Host-csrf_token":"csrf_token","CSRF_HEADER_NAME",0,"X-CSRF-Token","DATASET_DEFAULT",0,{top_k:4,score_threshold:.8},"DEFAULT_AGENT_PROMPT",0,E,"DEFAULT_AGENT_SETTING",0,D,"DEFAULT_CHAT_PROMPT_CONFIG",0,y,"DEFAULT_COMPLETION_PROMPT_CONFIG",0,{prompt:{text:""},conversation_histories_role:{user_prefix:"",assistant_prefix:""}},"DISABLE_UPLOAD_IMAGE_AS_ICON",0,G,"ENABLE_WEBSITE_FIRECRAWL",0,Q,"ENABLE_WEBSITE_JINAREADER",0,P,"ENABLE_WEBSITE_WATERCRAWL",0,R,"FULL_DOC_PREVIEW_LENGTH",0,50,"GITHUB_ACCESS_TOKEN",0,H,"IS_CE_EDITION",0,"SELF_HOSTED"===w,"IS_CLOUD_EDITION",0,"CLOUD"===w,"IS_DEV",0,!1,"IS_MARKETPLACE",0,V,"IS_PROD",0,!0,"JSON_SCHEMA_MAX_DEPTH",0,10,"LOCALE_COOKIE_NAME",0,"locale","LOOP_NODE_MAX_COUNT",0,L,"MARKETPLACE_API_PREFIX",0,u,"MARKETPLACE_URL_PREFIX",0,v,"MAX_ITERATIONS_NUM",0,M,"MAX_PARALLEL_LIMIT",0,J,"MAX_PROMPT_MESSAGE_LENGTH",0,10,"MAX_TOOLS_NUM",0,I,"MAX_TREE_DEPTH",0,N,"MAX_VAR_KEY_LENGTH",0,30,"NEED_REFRESH_APP_LIST_KEY",0,"needRefreshAppList","PARTNER_STACK_CONFIG",0,{cookieName:"partner_stack_info",saveCookieDays:90},"PASSPORT_HEADER_NAME",0,"X-App-Passport","PASSPORT_LOCAL_STORAGE_NAME",0,a=>`passport-${a}`,"PROVIDER_WITH_PRESET_TONE",0,["langgenius/openai/openai","langgenius/azure_openai/azure_openai"],"PUBLIC_API_PREFIX",0,t,"STOP_PARAMETER_RULE",0,{default:[],help:{en_US:"Up to four sequences where the API will stop generating further tokens. The returned text will not contain the stop sequence.",zh_Hans:"最多四个序列，API 将停止生成更多的 token。返回的文本将不包含停止序列。"},label:{en_US:"Stop sequences",zh_Hans:"停止序列"},name:"stop",required:!1,type:"tag",tagPlaceholder:{en_US:"Enter sequence and press Tab",zh_Hans:"输入序列并按 Tab 键"}},"SUPPORT_INSTALL_LOCAL_FILE_EXTENSIONS",0,".difypkg,.difybndl","TEXT_GENERATION_TIMEOUT_MS",0,K,"TONE_LIST",0,[{id:1,name:"Creative",config:{temperature:.8,top_p:.9,presence_penalty:.1,frequency_penalty:.1}},{id:2,name:"Balanced",config:{temperature:.5,top_p:.85,presence_penalty:.2,frequency_penalty:.3}},{id:3,name:"Precise",config:{temperature:.2,top_p:.75,presence_penalty:.5,frequency_penalty:.5}},{id:4,name:"Custom",config:void 0}],"VALUE_SELECTOR_DELIMITER",0,"@@@","VAR_ITEM_TEMPLATE",0,{key:"",name:"",type:"string",required:!0},"VAR_ITEM_TEMPLATE_IN_WORKFLOW",0,C,"VAR_REGEX",0,F,"WEB_APP_SHARE_CODE_HEADER_NAME",0,"X-App-Code","ZENDESK_FIELD_IDS",0,T,"ZENDESK_WIDGET_KEY",0,S,"appDefaultIconBackground",0,"#D5F5F6","emailRegex",0,/^[\w.!#$%&'*+\-/=?^{|}~]+@([\w-]+\.)+[\w-]{2,}$/m,"getMaxVarNameLength",0,a=>B.test(a)?8:30,"resetReg",0,()=>F.lastIndex=0,"validPassword",0,/^(?=.*[a-z])(?=.*\d)\S{8,}$/i],18039)}];
+
+//# sourceMappingURL=_e1c565e6._.js.map

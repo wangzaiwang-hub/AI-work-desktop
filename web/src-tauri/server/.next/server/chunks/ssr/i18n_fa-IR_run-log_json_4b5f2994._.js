@@ -1,0 +1,3 @@
+module.exports=[936860,a=>{a.v({actionLogs:"گزارش های اکشن",circularInvocationTip:"فراخوانی دایره ای ابزارها/گره ها در گردش کار فعلی وجود دارد.",detail:"جزئیات",input:"ورودی","meta.executor":"اجراکننده","meta.startTime":"زمان شروع","meta.status":"وضعیت","meta.steps":"گام‌های اجرا","meta.time":"زمان گذشته","meta.title":"فراداده","meta.tokens":"کل توکن‌ها","meta.version":"نسخه",result:"نتیجه","resultEmpty.link":"پنل جزئیات","resultEmpty.tipLeft":"لطفاً به ","resultEmpty.tipRight":" بروید و آن را مشاهده کنید.","resultEmpty.title":"این اجرا فقط خروجی به فرمت JSON دارد،","resultPanel.status":"وضعیت","resultPanel.time":"زمان گذشته","resultPanel.tokens":"کل توکن‌ها",tracing:"ردیابی"})}];
+
+//# sourceMappingURL=i18n_fa-IR_run-log_json_4b5f2994._.js.map

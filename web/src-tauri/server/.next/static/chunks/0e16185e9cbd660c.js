@@ -1,0 +1,1 @@
+(globalThis.TURBOPACK||(globalThis.TURBOPACK=[])).push(["object"==typeof document?document.currentScript:void 0,228420,e=>{e.v({"sidebar.collapseSidebar":"サイドバーを折りたたむ","sidebar.expandSidebar":"サイドバーを展開する"})}]);

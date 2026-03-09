@@ -1,0 +1,3 @@
+module.exports=[860980,a=>{a.v({allTags:"Toate etichetele",searchTags:"Etichete de căutare","tags.agent":"Agent","tags.business":"Afacere","tags.design":"Design","tags.education":"Educație","tags.entertainment":"Divertisment","tags.finance":"Finanţa","tags.image":"Imagine","tags.medical":"Medical","tags.news":"Știri","tags.other":"Alt","tags.productivity":"Productivitate","tags.rag":"CÂRPĂ","tags.search":"Căutare","tags.social":"Social","tags.travel":"Călătorie","tags.utilities":"Utilităţi","tags.videos":"Videoclipuri","tags.weather":"Vreme"})}];
+
+//# sourceMappingURL=i18n_ro-RO_plugin-tags_json_0f11a65d._.js.map

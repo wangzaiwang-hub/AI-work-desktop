@@ -1,0 +1,3 @@
+module.exports=[637025,a=>{a.v({actionLogs:"บันทึกการดําเนินการ",circularInvocationTip:"มีการเรียกใช้เครื่องมือ/โหนดแบบวงกลมในเวิร์กโฟลว์ปัจจุบัน",detail:"รายละเอียด",input:"อินพุต","meta.executor":"ผู้ปฏิบัติการ","meta.startTime":"เวลาเริ่มต้น","meta.status":"สถานะ","meta.steps":"เรียกใช้ขั้นตอน","meta.time":"เวลาที่ผ่านไป","meta.title":"ข้อมูลเมตา","meta.tokens":"โทเค็นทั้งหมด","meta.version":"เวอร์ชัน",result:"ผล","resultEmpty.link":"แผงรายละเอียด","resultEmpty.tipLeft":"กรุณาไปที่","resultEmpty.tipRight":"ดูมัน","resultEmpty.title":"เรียกใช้เฉพาะรูปแบบ JSON เอาต์พุต","resultPanel.status":"สถานะ","resultPanel.time":"เวลาที่ผ่านไป","resultPanel.tokens":"โทเค็นทั้งหมด",tracing:"ติดตาม"})}];
+
+//# sourceMappingURL=i18n_th-TH_run-log_json_0c178630._.js.map

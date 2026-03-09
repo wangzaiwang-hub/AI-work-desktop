@@ -1,0 +1,1 @@
+(globalThis.TURBOPACK||(globalThis.TURBOPACK=[])).push(["object"==typeof document?document.currentScript:void 0,968484,e=>{e.v({"sidebar.collapseSidebar":"Seitenleiste einklappen","sidebar.expandSidebar":"Seitenleiste erweitern"})}]);

@@ -1,0 +1,556 @@
+/**
+ * CheersAI 主题覆盖
+ * 基于 CheersAI 产品 UI 规范 v1.0
+ * 
+ * 主要修改：
+ * 1. 主色调：#3b82f6 (CheersAI 蓝)
+ * 2. 功能色：成功绿、警告黄、错误红、信息紫
+ * 3. 中性色：灰度系统
+ * 4. 渐变背景：侧边栏和导航栏
+ * 5. 字体、间距、圆角、阴影系统
+ * 6. 组件样式：按钮、输入框、徽章、表格等
+ */
+
+/* ========== 全局字体栈 ========== */
+html,
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+}
+
+html[data-theme="light"],
+html[data-theme="dark"] {
+  /* ========== 主色（品牌色）========== */
+  --primary-blue: #3b82f6;
+  --primary-blue-dark: #2563eb;
+  --primary-blue-light: #60a5fa;
+
+  /* ========== 功能色 ========== */
+  --success-green: #10b981;
+  --warning-yellow: #f59e0b;
+  --error-red: #ef4444;
+  --info-purple: #8b5cf6;
+
+  /* ========== 中性色 ========== */
+  --gray-50: #f9fafb;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-300: #d1d5db;
+  --gray-600: #4b5563;
+  --gray-900: #111827;
+
+  /* ========== 按钮主色覆盖 ========== */
+  --color-components-button-primary-bg: #3b82f6;
+  --color-components-button-primary-bg-hover: #2563eb;
+  --color-components-button-primary-bg-disabled: rgba(59, 130, 246, 0.14);
+  --color-components-button-primary-border: rgba(16, 24, 40, 0.04);
+  --color-components-button-primary-border-hover: rgba(16, 24, 40, 0.08);
+
+  /* ========== 复选框/单选框主色 ========== */
+  --color-components-checkbox-bg: #3b82f6;
+  --color-components-checkbox-bg-hover: #2563eb;
+  --color-components-checkbox-bg-disabled-checked: #60a5fa;
+
+  --color-components-radio-border-checked: #3b82f6;
+  --color-components-radio-border-checked-hover: #2563eb;
+  --color-components-radio-border-checked-disabled: #60a5fa;
+
+  /* ========== 开关主色 ========== */
+  --color-components-toggle-bg: #3b82f6;
+  --color-components-toggle-bg-hover: #2563eb;
+  --color-components-toggle-bg-disabled: #60a5fa;
+
+  /* ========== 输入框激活边框 ========== */
+  --color-components-input-border-active: #3b82f6;
+  --color-components-input-border-active-prompt-1: #3b82f6;
+  --color-components-input-border-active-prompt-2: #2563eb;
+
+  /* ========== 菜单项激活状态 ========== */
+  --color-components-menu-item-bg-active: rgba(59, 130, 246, 0.08);
+  --color-components-menu-item-text-active-accent: #3b82f6;
+
+  /* ========== 徽章颜色 ========== */
+  --color-components-badge-status-light-success-bg: #d1fae5;
+  --color-components-badge-status-light-success-text: #065f46;
+  --color-components-badge-status-light-warning-bg: #fef3c7;
+  --color-components-badge-status-light-warning-text: #92400e;
+  --color-components-badge-status-light-error-bg: #fee2e2;
+  --color-components-badge-status-light-error-text: #991b1b;
+  --color-components-badge-status-light-normal-bg: #dbeafe;
+  --color-components-badge-status-light-normal-text: #1e40af;
+
+  /* ========== 功能模块颜色映射 ========== */
+  /* 脱敏沙箱 - 蓝色 */
+  --module-desensitization-primary: #3b82f6;
+  --module-desensitization-secondary: #2563eb;
+
+  /* 工作流 - 紫色 */
+  --module-workflow-primary: #8b5cf6;
+  --module-workflow-secondary: #7c3aed;
+
+  /* 智能体 - 绿色 */
+  --module-agent-primary: #10b981;
+  --module-agent-secondary: #059669;
+
+  /* 知识库 - 黄色 */
+  --module-knowledge-primary: #f59e0b;
+  --module-knowledge-secondary: #d97706;
+}
+
+/* ========== 侧边栏渐变背景 ========== */
+.sidebar-gradient,
+[class*="sidebar"] {
+  background: linear-gradient(180deg, #111827 0%, #1f2937 100%) !important;
+}
+
+/* ========== 功能卡片渐变 ========== */
+.feature-card-blue {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+}
+
+.feature-card-purple {
+  background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+}
+
+.feature-card-green {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+}
+
+/* ========== 高亮标注（脱敏沙箱） ========== */
+.highlight-person {
+  background: #fef3c7;
+}
+
+.highlight-account {
+  background: #dbeafe;
+}
+
+.highlight-amount {
+  background: #fed7aa;
+}
+
+/* ========== 圆角规范 ========== */
+.rounded-cheers-sm {
+  border-radius: 0.125rem; /* 2px */
+}
+
+.rounded-cheers {
+  border-radius: 0.25rem; /* 4px */
+}
+
+.rounded-cheers-lg {
+  border-radius: 0.5rem; /* 8px */
+}
+
+.rounded-cheers-xl {
+  border-radius: 0.75rem; /* 12px */
+}
+
+.rounded-cheers-2xl {
+  border-radius: 1rem; /* 16px */
+}
+
+/* ========== 阴影系统 ========== */
+.shadow-cheers-sm {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.shadow-cheers {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.shadow-cheers-md {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.shadow-cheers-lg {
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.shadow-cheers-xl {
+  box-shadow: 0 20px 25px rgba(0, 0, 0, 0.1);
+}
+
+.shadow-cheers-xl-hover:hover {
+  box-shadow: 0 20px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* ========== 过渡动画 ========== */
+.transition-cheers-fast {
+  transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.transition-cheers-base {
+  transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.transition-cheers-slow {
+  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ========== 卡片悬浮效果 ========== */
+.card-hover-effect {
+  transition: all 0.3s ease;
+}
+
+.card-hover-effect:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* ========== 字体规范 ========== */
+.text-cheers-page-title {
+  font-size: 1.5rem; /* 24px */
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.text-cheers-section-title {
+  font-size: 1.25rem; /* 20px */
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.text-cheers-card-title {
+  font-size: 1.125rem; /* 18px */
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.text-cheers-body {
+  font-size: 0.875rem; /* 14px */
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.text-cheers-caption {
+  font-size: 0.75rem; /* 12px */
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.text-cheers-small {
+  font-size: 0.625rem; /* 10px */
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+/* ========== 按钮样式 ========== */
+.btn-cheers-primary {
+  background: #3b82f6;
+  color: white;
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-cheers-primary:hover {
+  background: #2563eb;
+}
+
+.btn-cheers-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-cheers-secondary {
+  background: transparent;
+  color: #6b7280;
+  border: 1px solid #d1d5db;
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-cheers-secondary:hover {
+  background: #f3f4f6;
+}
+
+.btn-cheers-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-cheers-icon:hover {
+  background: #f3f4f6;
+}
+
+/* ========== 输入控件样式 ========== */
+.input-cheers {
+  width: 100%;
+  padding: 10px 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #111827;
+  transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.input-cheers:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.textarea-cheers {
+  width: 100%;
+  padding: 10px 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #111827;
+  resize: none;
+  min-height: 96px;
+  line-height: 1.5;
+  transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.textarea-cheers:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* ========== 徽章样式 ========== */
+.badge-cheers-success {
+  background: #d1fae5;
+  color: #065f46;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  font-size: 10px;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+}
+
+.badge-cheers-warning {
+  background: #fef3c7;
+  color: #92400e;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  font-size: 10px;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+}
+
+.badge-cheers-error {
+  background: #fee2e2;
+  color: #991b1b;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  font-size: 10px;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+}
+
+.badge-cheers-info {
+  background: #dbeafe;
+  color: #1e40af;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  font-size: 10px;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+}
+
+.badge-cheers-primary {
+  background: #3b82f6;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  font-size: 10px;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* ========== 表格样式 ========== */
+.table-cheers {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-cheers th {
+  padding: 12px 24px;
+  text-align: left;
+  font-size: 11px;
+  font-weight: 600;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: #f9fafb;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.table-cheers td {
+  padding: 16px 24px;
+  font-size: 14px;
+  color: #111827;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.table-cheers tr:hover {
+  background: #f9fafb;
+  transition: background 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ========== 导航菜单项样式 ========== */
+.nav-item-cheers {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 48px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #d1d5db;
+  background: transparent;
+  transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.nav-item-cheers:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.nav-item-cheers.active {
+  background: #3b82f6;
+  color: #ffffff;
+}
+
+.nav-item-cheers .icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 12px;
+}
+
+/* ========== 统计卡片样式 ========== */
+.stat-card-cheers {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.stat-card-cheers .value {
+  font-size: 24px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.stat-card-cheers .label {
+  font-size: 14px;
+  color: #6b7280;
+  margin-top: 4px;
+}
+
+/* ========== 间距工具类 ========== */
+.space-cheers-xs {
+  margin: 0.25rem; /* 4px */
+}
+
+.space-cheers-sm {
+  margin: 0.5rem; /* 8px */
+}
+
+.space-cheers-md {
+  margin: 0.75rem; /* 12px */
+}
+
+.space-cheers {
+  margin: 1rem; /* 16px */
+}
+
+.space-cheers-lg {
+  margin: 1.5rem; /* 24px */
+}
+
+.space-cheers-xl {
+  margin: 2rem; /* 32px */
+}
+
+.space-cheers-2xl {
+  margin: 3rem; /* 48px */
+}
+
+/* ========== 进度条样式 ========== */
+.progress-cheers {
+  height: 8px;
+  background: #e5e7eb;
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.progress-cheers-bar {
+  height: 100%;
+  background: #3b82f6;
+  border-radius: 9999px;
+  transition: width 300ms ease;
+}
+
+/* ========== WORM 审计条样式 ========== */
+.worm-audit-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 48px;
+  background: linear-gradient(90deg, #1f2937 0%, #111827 100%);
+  color: white;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1000;
+}
+
+/* ========== 消息气泡样式 ========== */
+.message-bubble-ai {
+  max-width: 768px;
+  background: white;
+  border: 1px solid #e5e7eb;
+  color: #111827;
+  border-radius: 16px;
+  padding: 12px 16px;
+}
+
+.message-bubble-user {
+  max-width: 768px;
+  background: #3b82f6;
+  color: white;
+  border-radius: 16px;
+  padding: 12px 16px;
+}
+
+/* ========== 文件上传区样式 ========== */
+.upload-area-cheers {
+  width: 300px;
+  height: 200px;
+  border: 2px dashed #cbd5e1;
+  background: white;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.upload-area-cheers:hover {
+  border-color: #3b82f6;
+  background: rgba(59, 130, 246, 0.05);
+}

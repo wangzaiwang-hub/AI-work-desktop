@@ -1,0 +1,1 @@
+(globalThis.TURBOPACK||(globalThis.TURBOPACK=[])).push(["object"==typeof document?document.currentScript:void 0,713717,e=>{e.v({"sidebar.collapseSidebar":"Thu gọn thanh bên","sidebar.expandSidebar":"Mở rộng thanh bên"})}]);

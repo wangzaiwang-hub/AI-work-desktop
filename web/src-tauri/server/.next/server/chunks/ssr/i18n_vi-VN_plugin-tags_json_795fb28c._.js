@@ -1,0 +1,3 @@
+module.exports=[163374,a=>{a.v({allTags:"Tất cả thẻ",searchTags:"Thẻ tìm kiếm","tags.agent":"Người đại lý","tags.business":"Kinh doanh","tags.design":"Thiết kế","tags.education":"Giáo dục","tags.entertainment":"Giải trí","tags.finance":"Tài chính","tags.image":"Ảnh","tags.medical":"Y","tags.news":"Tin tức","tags.other":"Khác","tags.productivity":"Năng suất","tags.rag":"GIẺ","tags.search":"Tìm kiếm","tags.social":"Xã hội","tags.travel":"Du lịch","tags.utilities":"Tiện ích","tags.videos":"Video","tags.weather":"Thời tiết"})}];
+
+//# sourceMappingURL=i18n_vi-VN_plugin-tags_json_795fb28c._.js.map

@@ -1,0 +1,3 @@
+{
+  "/(commonLayout)/datasets/(datasetDetailLayout)/[datasetId]/documents/[documentId]/page": "app/(commonLayout)/datasets/(datasetDetailLayout)/[datasetId]/documents/[documentId]/page.js"
+}

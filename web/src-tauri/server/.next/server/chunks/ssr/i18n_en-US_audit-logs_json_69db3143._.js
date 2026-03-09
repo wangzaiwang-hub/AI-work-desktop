@@ -1,0 +1,3 @@
+module.exports=[262563,a=>{a.v({title:"Audit Logs",stats:{totalOperations:"Total Operations",operationsToday:"Operations Today",verifiedCount:"Verified Count"},filters:{action:"Action",allActions:"All Actions",search:"Search",searchPlaceholder:"Search logs..."},table:{time:"Time",user:"User",action:"Action",ipAddress:"IP Address",details:"Details"},pagination:{showing:"Showing {{from}} to {{to}} of {{total}}",previous:"Previous",next:"Next"},loading:"Loading..."})}];
+
+//# sourceMappingURL=i18n_en-US_audit-logs_json_69db3143._.js.map

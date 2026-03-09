@@ -1,0 +1,3 @@
+module.exports=[510360,a=>{a.v({allTags:"كل العلامات",searchTags:"البحث في العلامات","tags.agent":"وكيل","tags.business":"أعمال","tags.design":"تصميم","tags.education":"تعليم","tags.entertainment":"ترفيه","tags.finance":"تمويل","tags.image":"صورة","tags.medical":"طبي","tags.news":"أخبار","tags.other":"أخرى","tags.productivity":"إنتاجية","tags.rag":"RAG","tags.search":"بحث","tags.social":"اجتماعي","tags.travel":"سفر","tags.utilities":"أدوات مساعدة","tags.videos":"فيديوهات","tags.weather":"طقس"})}];
+
+//# sourceMappingURL=i18n_ar-TN_plugin-tags_json_92c95a36._.js.map

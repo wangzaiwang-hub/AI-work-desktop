@@ -1,0 +1,3 @@
+module.exports=[565860,a=>{a.v({allTags:"Vse nalepke",searchTags:"Iskalne oznake","tags.agent":"Agent","tags.business":"Poslovanje","tags.design":"Oblikovanje","tags.education":"Izobraževanje","tags.entertainment":"Zabava","tags.finance":"Finance","tags.image":"Slika","tags.medical":"Medicinski","tags.news":"Novice","tags.other":"Drugo","tags.productivity":"Produktivnost","tags.rag":"RAG","tags.search":"Iskanje","tags.social":"Družbeni","tags.travel":"Potovanje","tags.utilities":"Komunalne storitve","tags.videos":"Videi","tags.weather":"Vreme"})}];
+
+//# sourceMappingURL=i18n_sl-SI_plugin-tags_json_d5df4a6e._.js.map

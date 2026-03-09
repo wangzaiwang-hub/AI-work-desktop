@@ -1,0 +1,3 @@
+module.exports=[502769,a=>{a.v({actionLogs:"سجلات العمل",circularInvocationTip:"يوجد استدعاء دائري للأدوات/العقد في سير العمل الحالي.",detail:"تفاصيل",input:"إدخال","meta.executor":"المنفذ","meta.startTime":"وقت البدء","meta.status":"الحالة","meta.steps":"خطوات التشغيل","meta.time":"الوقت المستغرق","meta.title":"البيانات الوصفية","meta.tokens":"إجمالي الرموز","meta.version":"الإصدار",result:"نتيجة","resultEmpty.link":"لوحة التفاصيل","resultEmpty.tipLeft":"يرجى الذهاب إلى ","resultEmpty.tipRight":" لعرضه.","resultEmpty.title":"هذا التشغيل يخرج فقط تنسيق JSON،","resultPanel.status":"الحالة","resultPanel.time":"الوقت المستغرق","resultPanel.tokens":"إجمالي الرموز",tracing:"تتبع"})}];
+
+//# sourceMappingURL=i18n_ar-TN_run-log_json_b9db318f._.js.map

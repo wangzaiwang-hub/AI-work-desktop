@@ -1,0 +1,3 @@
+module.exports=[186271,a=>{a.v({allTags:"すべてのタグ",searchTags:"検索タグ","tags.agent":"エージェント","tags.business":"ビジネス","tags.design":"デザイン","tags.education":"教育","tags.entertainment":"エンターテインメント","tags.finance":"金融","tags.image":"画像","tags.medical":"医療","tags.news":"ニュース","tags.other":"他","tags.productivity":"生産性","tags.rag":"RAG","tags.search":"検索","tags.social":"社会","tags.travel":"旅行","tags.utilities":"ユーティリティ","tags.videos":"ビデオ","tags.weather":"天気"})}];
+
+//# sourceMappingURL=i18n_ja-JP_plugin-tags_json_c3851c98._.js.map

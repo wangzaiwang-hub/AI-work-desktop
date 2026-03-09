@@ -1,0 +1,103 @@
+version: '3.8'
+
+services:
+  # PostgreSQL 数据库
+  postgres:
+    image: postgres:15-alpine
+    container_name: dify-postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: difyai123456
+      POSTGRES_DB: dify
+      PGDATA: /var/lib/postgresql/data/pgdata
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Redis 缓存
+  redis:
+    image: redis:7-alpine
+    container_name: dify-redis
+    restart: always
+    command: redis-server --requirepass difyai123456
+    ports:
+      - "6700:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "-a", "difyai123456", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Weaviate 向量数据库
+  weaviate:
+    image: semitechnologies/weaviate:1.19.0
+    container_name: dify-weaviate
+    restart: always
+    environment:
+      QUERY_DEFAULTS_LIMIT: 25
+      AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'false'
+      PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
+      DEFAULT_VECTORIZER_MODULE: 'none'
+      CLUSTER_HOSTNAME: 'node1'
+      AUTHENTICATION_APIKEY_ENABLED: 'true'
+      AUTHENTICATION_APIKEY_ALLOWED_KEYS: 'WVF5YThaHlkYwhGUSmCRgsX3tD5ngdN8pkih'
+      AUTHENTICATION_APIKEY_USERS: 'hello@dify.ai'
+      AUTHORIZATION_ADMINLIST_ENABLED: 'true'
+      AUTHORIZATION_ADMINLIST_USERS: 'hello@dify.ai'
+    ports:
+      - "8080:8080"
+    volumes:
+      - weaviate_data:/var/lib/weaviate
+
+  # Plugin Daemon
+  plugin_daemon:
+    image: langgenius/dify-plugin-daemon:0.5.3-local
+    container_name: dify-plugin-daemon
+    restart: always
+    environment:
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      REDIS_PASSWORD: difyai123456
+      SERVER_PORT: 5002
+      SERVER_KEY: lYkiYYT6owG+71oLerGzA7GXCgOT++6ovaezWAjpCjf+Sjc3ZtU+qUEi
+      MAX_PLUGIN_PACKAGE_SIZE: 52428800
+      PPROF_ENABLED: 'false'
+      DIFY_INNER_API_URL: http://host.docker.internal:5001
+      DIFY_INNER_API_KEY: QaHbTe77CtuXmsfyhR7+vRjI/+XbV1AaFy691iy+kGDv2Jvy0/eAh8Y1
+      PLUGIN_REMOTE_INSTALLING_HOST: localhost
+      PLUGIN_REMOTE_INSTALLING_PORT: 5003
+      PLUGIN_WORKING_PATH: /app/storage
+      DB_USERNAME: postgres
+      DB_PASSWORD: difyai123456
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_DATABASE: dify_plugin
+    ports:
+      - "5002:5002"
+      - "5003:5003"
+    volumes:
+      - plugin_daemon_data:/app/storage
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - redis
+      - postgres
+
+volumes:
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local
+  weaviate_data:
+    driver: local
+  plugin_daemon_data:
+    driver: local

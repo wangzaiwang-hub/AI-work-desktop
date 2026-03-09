@@ -1,0 +1,1 @@
+(globalThis.TURBOPACK||(globalThis.TURBOPACK=[])).push(["object"==typeof document?document.currentScript:void 0,168636,e=>{e.v({"sidebar.collapseSidebar":"摺疊側邊欄","sidebar.expandSidebar":"展開側邊欄"})}]);

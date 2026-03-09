@@ -1,0 +1,3 @@
+module.exports=[162077,a=>{a.v({allTags:"Всі теги",searchTags:"Пошукові теги","tags.agent":"Агент","tags.business":"Бізнес","tags.design":"Проект","tags.education":"Освіта","tags.entertainment":"Розваги","tags.finance":"Фінанси","tags.image":"Образ","tags.medical":"Медичний","tags.news":"Вісті","tags.other":"Інший","tags.productivity":"Продуктивність","tags.rag":"ТРЯПІЧНАЯ","tags.search":"Шукати","tags.social":"Соціальний","tags.travel":"Подорожувати","tags.utilities":"Утиліти","tags.videos":"Відео","tags.weather":"Погода"})}];
+
+//# sourceMappingURL=i18n_uk-UA_plugin-tags_json_fa5e0da0._.js.map
