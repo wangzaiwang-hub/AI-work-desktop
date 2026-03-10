@@ -36,8 +36,8 @@ const Marketplace = ({
   } = marketplaceContext
 
   return (
-    <>
-      <div className="sticky bottom-0 flex shrink-0 flex-col bg-background-default-subtle px-12 pb-[14px] pt-2">
+    <div className="flex flex-col h-full">
+      <div className="flex shrink-0 flex-col bg-background-default-subtle px-12 pb-[14px] pt-2 border-t border-divider-subtle">
         {isMarketplaceArrowVisible && (
           <RiArrowUpDoubleLine
             className="absolute left-1/2 top-2 z-10 h-4 w-4 -translate-x-1/2 cursor-pointer text-text-quaternary"
@@ -89,10 +89,10 @@ const Marketplace = ({
           </div>
         </div>
       </div>
-      <div className="mt-[-14px] shrink-0 grow bg-background-default-subtle px-12 pb-2">
+      <div className="flex-1 overflow-y-auto bg-background-default-subtle px-12 pb-2">
         {
           isLoading && page === 1 && (
-            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+            <div className="flex items-center justify-center py-12">
               <Loading />
             </div>
           )
@@ -108,7 +108,7 @@ const Marketplace = ({
           )
         }
       </div>
-    </>
+    </div>
   )
 }
 

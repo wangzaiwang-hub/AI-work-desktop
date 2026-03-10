@@ -12,6 +12,8 @@ import {
   deleteSandboxFile as apiDeleteFile,
 } from '@/service/sandbox-files'
 import { post } from '@/service/base'
+import { ConfirmModal } from '@/app/components/base/confirm-modal'
+import Toast from '@/app/components/base/toast'
 
 interface FileRecord { id: string; fileName: string; size: number; createdAt: string }
 interface FileListProps { sandboxPath: string; onRefresh?: () => void }
@@ -32,6 +34,7 @@ export function FileList({ sandboxPath }: FileListProps) {
   const [sortDir, setSortDir] = useState<SortDir>('desc')
   const [page, setPage] = useState(1)
   const [pageSize, setPageSize] = useState(10)
+  const [deleteFile, setDeleteFile] = useState<FileRecord | null>(null)
 
   const loadFiles = useCallback(async () => {
     if (!sandboxPath) return
@@ -94,16 +97,27 @@ export function FileList({ sandboxPath }: FileListProps) {
       const u = URL.createObjectURL(b)
       const a = document.createElement('a'); a.href = u; a.download = file.fileName
       document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(u)
-    } catch { alert('\u4e0b\u8f7d\u5931\u8d25') }
+    } catch { 
+      Toast.notify({ type: 'error', message: '下载失败' })
+    }
   }
 
-  const handleDelete = async (file: FileRecord) => {
-    if (!confirm(`\u786e\u5b9a\u5220\u9664 ${file.fileName}\uff1f`)) return
+  const handleDelete = (file: FileRecord) => {
+    setDeleteFile(file)
+  }
+
+  const confirmDelete = async () => {
+    if (!deleteFile) return
     try {
-      await apiDeleteFile(sandboxPath, file.fileName)
-      setFiles(p => p.filter(f => f.id !== file.id))
-      if (previewFile?.id === file.id) { setPreviewFile(null); setPreviewContent('') }
-    } catch { alert('\u5220\u9664\u5931\u8d25') }
+      await apiDeleteFile(sandboxPath, deleteFile.fileName)
+      setFiles(p => p.filter(f => f.id !== deleteFile.id))
+      if (previewFile?.id === deleteFile.id) { setPreviewFile(null); setPreviewContent('') }
+      Toast.notify({ type: 'success', message: '删除成功' })
+    } catch { 
+      Toast.notify({ type: 'error', message: '删除失败' })
+    } finally {
+      setDeleteFile(null)
+    }
   }
 
   const handleSyncToKnowledge = async () => {
@@ -253,6 +267,16 @@ export function FileList({ sandboxPath }: FileListProps) {
           </div>
         </div>
       )}
+
+      <ConfirmModal
+        isShow={!!deleteFile}
+        onClose={() => setDeleteFile(null)}
+        onConfirm={confirmDelete}
+        title="删除文件"
+        content={`确定删除 ${deleteFile?.fileName}？此操作无法撤销。`}
+        confirmText="删除"
+        type="danger"
+      />
     </div>
   )
 }

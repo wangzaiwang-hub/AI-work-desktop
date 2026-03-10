@@ -129,6 +129,19 @@ def init_app(app: DifyApp):
     )
     app.register_blueprint(ner_bp)
 
+    # Audit logs API for reading local log file (no auth required, local dev tool)
+    from controllers.console.audit_logs import audit_logs_bp
+
+    _apply_cors_once(
+        audit_logs_bp,
+        resources={r"/*": {"origins": dify_config.CONSOLE_CORS_ALLOW_ORIGINS}},
+        supports_credentials=True,
+        allow_headers=list(AUTHENTICATED_HEADERS),
+        methods=["GET", "PUT", "POST", "DELETE", "OPTIONS", "PATCH"],
+        expose_headers=list(EXPOSED_HEADERS),
+    )
+    app.register_blueprint(audit_logs_bp)
+
     # Register trigger blueprint with CORS for webhook calls
     _apply_cors_once(
         trigger_bp,

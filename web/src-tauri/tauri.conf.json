@@ -4,7 +4,7 @@
   "version": "1.12.0",
   "identifier": "com.cheersai.desktop",
   "build": {
-    "frontendDist": "../src-tauri/server",
+    "frontendDist": "../dist-server",
     "devUrl": "http://localhost:3000",
     "beforeDevCommand": "echo 'Please ensure dev server is running on port 3000'",
     "beforeBuildCommand": ""

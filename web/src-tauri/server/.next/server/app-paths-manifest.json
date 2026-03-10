@@ -31,6 +31,8 @@
   "/account/(commonLayout)/page": "app/account/(commonLayout)/page.js",
   "/account/oauth/authorize/page": "app/account/oauth/authorize/page.js",
   "/activate/page": "app/activate/page.js",
+  "/api/proxy-marketplace/[...path]/route": "app/api/proxy-marketplace/[...path]/route.js",
+  "/api/proxy/[...path]/route": "app/api/proxy/[...path]/route.js",
   "/forgot-password/page": "app/forgot-password/page.js",
   "/init/page": "app/init/page.js",
   "/install/page": "app/install/page.js",

@@ -47,6 +47,18 @@ def save_file():
         dir_path.mkdir(parents=True, exist_ok=True)
         file_path = dir_path / safe_name
         file_path.write_text(content, encoding="utf-8")
+        
+        # 记录审计日志 - 文件脱敏操作
+        log_operation(
+            action="file_mask",
+            content={
+                "file_name": file_name,
+                "sandbox_path": sandbox_path,
+                "size": len(content.encode("utf-8")),
+            },
+            resource_type="file",
+        )
+        
         return {
             "result": "success",
             "file_path": str(file_path),

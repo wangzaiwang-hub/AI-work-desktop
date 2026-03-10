@@ -2,12 +2,17 @@
 import type { Collection } from './types'
 import { useQueryState } from 'nuqs'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { RiArrowRightUpLine, RiArrowUpDoubleLine } from '@remixicon/react'
 import { useTranslation } from 'react-i18next'
+import { useTheme } from 'next-themes'
+import { useLocale } from '#i18n'
 import Input from '@/app/components/base/input'
+import Loading from '@/app/components/base/loading'
 import Card from '@/app/components/plugins/card'
 import CardMoreInfo from '@/app/components/plugins/card/card-more-info'
 import { useTags } from '@/app/components/plugins/hooks'
 import Empty from '@/app/components/plugins/marketplace/empty'
+import List from '@/app/components/plugins/marketplace/list'
 import PluginDetailPanel from '@/app/components/plugins/plugin-detail-panel'
 import LabelFilter from '@/app/components/tools/labels/filter'
 import CustomCreateCard from '@/app/components/tools/provider/custom-create-card'
@@ -17,8 +22,8 @@ import { useGlobalPublicStore } from '@/context/global-public-context'
 import { useCheckInstalled, useInvalidateInstalledPluginList } from '@/service/use-plugins'
 import { useAllToolProviders } from '@/service/use-tools'
 import { cn } from '@/utils/classnames'
+import { getMarketplaceUrl } from '@/utils/var'
 import { ToolTypeEnum } from '../workflow/block-selector/types'
-import Marketplace from './marketplace'
 import { useMarketplace } from './marketplace/hooks'
 import MCPList from './mcp'
 
@@ -41,6 +46,8 @@ const ProviderList = () => {
   // searchParams.get('category') === 'workflow'
   const { t } = useTranslation()
   const { getTagLabel } = useTags()
+  const locale = useLocale()
+  const { theme } = useTheme()
   const { enable_marketplace } = useGlobalPublicStore(s => s.systemFeatures)
   const containerRef = useRef<HTMLDivElement>(null)
 
@@ -81,15 +88,12 @@ const ProviderList = () => {
     return checkedInstalledData?.plugins?.[0]
   }, [checkedInstalledData])
 
-  const toolListTailRef = useRef<HTMLDivElement>(null)
   const showMarketplacePanel = useCallback(() => {
     containerRef.current?.scrollTo({
-      top: toolListTailRef.current
-        ? toolListTailRef.current?.offsetTop - 80
-        : 0,
+      top: containerRef.current.scrollHeight,
       behavior: 'smooth',
     })
-  }, [toolListTailRef])
+  }, [])
 
   const marketplaceContext = useMarketplace(keywords, tagFilterValue)
   const {
@@ -100,10 +104,12 @@ const ProviderList = () => {
   const onContainerScroll = useMemo(() => {
     return (e: Event) => {
       handleScroll(e)
-      if (containerRef.current && toolListTailRef.current)
-        setIsMarketplaceArrowVisible(containerRef.current.scrollTop < (toolListTailRef.current?.offsetTop - 80))
+      if (containerRef.current) {
+        const { scrollTop, scrollHeight, clientHeight } = containerRef.current
+        setIsMarketplaceArrowVisible(scrollTop + clientHeight < scrollHeight - 50)
+      }
     }
-  }, [handleScroll, containerRef, toolListTailRef, setIsMarketplaceArrowVisible])
+  }, [handleScroll])
 
   useEffect(() => {
     const container = containerRef.current
@@ -144,8 +150,9 @@ const ProviderList = () => {
           </div>
           {activeTab !== 'mcp' && (
             <div className={cn(
-              'relative grid shrink-0 grid-cols-1 content-start gap-4 px-12 pb-4 pt-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4',
+              'relative grid shrink-0 grid-cols-1 content-start gap-4 px-12 pt-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4',
               !filteredCollectionList.length && activeTab === 'workflow' && 'grow',
+              enable_marketplace && activeTab === 'builtin' ? 'pb-2' : 'pb-4',
             )}
             >
               {activeTab === 'api' && <CustomCreateCard onRefreshData={refetch} />}
@@ -180,20 +187,87 @@ const ProviderList = () => {
           {!filteredCollectionList.length && activeTab === 'builtin' && (
             <Empty lightCard text={t('noTools', { ns: 'tools' })} className="h-[224px] shrink-0 px-12" />
           )}
-          <div ref={toolListTailRef} />
           {enable_marketplace && activeTab === 'builtin' && (
-            <Marketplace
-              searchPluginText={keywords}
-              filterPluginTags={tagFilterValue}
-              isMarketplaceArrowVisible={isMarketplaceArrowVisible}
-              showMarketplacePanel={showMarketplacePanel}
-              marketplaceContext={marketplaceContext}
-            />
+            <div className="shrink-0 bg-background-default-subtle px-12 pb-2">
+              {
+                marketplaceContext.isLoading && marketplaceContext.page === 1 && (
+                  <div className="flex items-center justify-center py-12">
+                    <Loading />
+                  </div>
+                )
+              }
+              {
+                (!marketplaceContext.isLoading || marketplaceContext.page > 1) && (
+                  <List
+                    marketplaceCollections={marketplaceContext.marketplaceCollections || []}
+                    marketplaceCollectionPluginsMap={marketplaceContext.marketplaceCollectionPluginsMap || {}}
+                    plugins={marketplaceContext.plugins}
+                    showInstallButton
+                  />
+                )
+              }
+            </div>
           )}
           {activeTab === 'mcp' && (
             <MCPList searchText={keywords} />
           )}
         </div>
+        {enable_marketplace && activeTab === 'builtin' && (
+          <div className="absolute bottom-0 left-0 right-0 z-20 bg-background-default-subtle shadow-[0_-4px_12px_rgba(0,0,0,0.08)] border-t border-divider-subtle">
+            <div className="flex shrink-0 flex-col px-12 pb-[14px] pt-2">
+              {isMarketplaceArrowVisible && (
+                <RiArrowUpDoubleLine
+                  className="absolute left-1/2 top-2 z-10 h-4 w-4 -translate-x-1/2 cursor-pointer text-text-quaternary"
+                  onClick={showMarketplacePanel}
+                />
+              )}
+              <div className="pb-3 pt-4">
+                <div className="title-2xl-semi-bold bg-gradient-to-r from-[rgba(11,165,236,0.95)] to-[rgba(21,90,239,0.95)] bg-clip-text text-transparent">
+                  {t('marketplace.moreFrom', { ns: 'plugin' })}
+                </div>
+                <div className="body-md-regular flex items-center text-center text-text-tertiary">
+                  {t('marketplace.discover', { ns: 'plugin' })}
+                  <span className="body-md-medium relative ml-1 text-text-secondary after:absolute after:bottom-[1.5px] after:left-0 after:h-2 after:w-full after:bg-text-text-selected after:content-['']">
+                    {t('category.models', { ns: 'plugin' })}
+                  </span>
+                  ,
+                  <span className="body-md-medium relative ml-1 text-text-secondary after:absolute after:bottom-[1.5px] after:left-0 after:h-2 after:w-full after:bg-text-text-selected after:content-['']">
+                    {t('category.tools', { ns: 'plugin' })}
+                  </span>
+                  ,
+                  <span className="body-md-medium relative ml-1 text-text-secondary after:absolute after:bottom-[1.5px] after:left-0 after:h-2 after:w-full after:bg-text-text-selected after:content-['']">
+                    {t('category.datasources', { ns: 'plugin' })}
+                  </span>
+                  ,
+                  <span className="body-md-medium relative ml-1 text-text-secondary after:absolute after:bottom-[1.5px] after:left-0 after:h-2 after:w-full after:bg-text-text-selected after:content-['']">
+                    {t('category.triggers', { ns: 'plugin' })}
+                  </span>
+                  ,
+                  <span className="body-md-medium relative ml-1 text-text-secondary after:absolute after:bottom-[1.5px] after:left-0 after:h-2 after:w-full after:bg-text-text-selected after:content-['']">
+                    {t('category.agents', { ns: 'plugin' })}
+                  </span>
+                  ,
+                  <span className="body-md-medium relative ml-1 mr-1 text-text-secondary after:absolute after:bottom-[1.5px] after:left-0 after:h-2 after:w-full after:bg-text-text-selected after:content-['']">
+                    {t('category.extensions', { ns: 'plugin' })}
+                  </span>
+                  {t('marketplace.and', { ns: 'plugin' })}
+                  <span className="body-md-medium relative ml-1 mr-1 text-text-secondary after:absolute after:bottom-[1.5px] after:left-0 after:h-2 after:w-full after:bg-text-text-selected after:content-['']">
+                    {t('category.bundles', { ns: 'plugin' })}
+                  </span>
+                  {t('operation.in', { ns: 'common' })}
+                  <a
+                    href={getMarketplaceUrl('', { language: locale, q: keywords, tags: tagFilterValue.join(','), theme })}
+                    className="system-sm-medium ml-1 flex items-center text-text-accent"
+                    target="_blank"
+                  >
+                    {t('marketplace.difyMarketplace', { ns: 'plugin' })}
+                    <RiArrowRightUpLine className="h-4 w-4" />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
       {currentProvider && !currentProvider.plugin_id && (
         <ProviderDetail

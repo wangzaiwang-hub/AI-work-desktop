@@ -56,7 +56,7 @@ try {
 
   // 步骤 3: 准备服务器文件
   console.log('📋 步骤 3: 准备服务器文件...');
-  const serverDir = path.join(__dirname, '../src-tauri/server');
+  const serverDir = path.join(__dirname, '../dist-server');
   const standaloneDir = path.join(__dirname, '../.next/standalone');
   
   // 清理旧文件
@@ -103,7 +103,7 @@ app.prepare().then(() => {
 
   fs.writeFileSync(path.join(serverDir, 'server.js'), serverEntry);
 
-  // 复制 standalone 构建
+  // 复制 standalone 构建（包括 node_modules，这是必需的）
   if (fs.existsSync(standaloneDir)) {
     console.log('  📁 复制 standalone 文件...');
     copyRecursiveSync(standaloneDir, serverDir);

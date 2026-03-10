@@ -31,6 +31,8 @@
   "/account/(commonLayout)/page": "/account",
   "/account/oauth/authorize/page": "/account/oauth/authorize",
   "/activate/page": "/activate",
+  "/api/proxy-marketplace/[...path]/route": "/api/proxy-marketplace/[...path]",
+  "/api/proxy/[...path]/route": "/api/proxy/[...path]",
   "/forgot-password/page": "/forgot-password",
   "/init/page": "/init",
   "/install/page": "/install",
