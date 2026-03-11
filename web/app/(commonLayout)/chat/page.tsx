@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
-import { RiSendPlaneLine, RiAttachmentLine, RiMicLine, RiAddLine, RiDeleteBinLine, RiSearchLine, RiMoreLine, RiArrowDownSLine, RiCheckLine } from '@remixicon/react'
+import { RiAttachmentLine, RiMicLine, RiAddLine, RiDeleteBinLine, RiSearchLine, RiMoreLine, RiArrowDownSLine, RiCheckLine, RiMenuLine, RiCloseLine } from '@remixicon/react'
 import { cn } from '@/utils/classnames'
 import { ModelTypeEnum } from '@/app/components/header/account-setting/model-provider-page/declarations'
 import { useModelList, useDefaultModel } from '@/app/components/header/account-setting/model-provider-page/hooks'
@@ -70,9 +70,32 @@ const ChatPage = () => {
   const [selectedModel, setSelectedModel] = useState<SelectedModel | null>(null)
   const [uploadedFiles, setUploadedFiles] = useState<UploadedFile[]>([])
   const [showSandboxPicker, setShowSandboxPicker] = useState(false)
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
 
   // 本地存储的 key
   const STORAGE_KEY = 'cheersai_conversations'
+  const SIDEBAR_STORAGE_KEY = 'cheersai_sidebar_collapsed'
+
+  // 从本地存储加载侧边栏状态
+  useEffect(() => {
+    try {
+      const stored = localStorage.getItem(SIDEBAR_STORAGE_KEY)
+      if (stored) {
+        setSidebarCollapsed(JSON.parse(stored))
+      }
+    } catch (error) {
+      // 加载侧边栏状态失败，忽略错误
+    }
+  }, [])
+
+  // 保存侧边栏状态到本地存储
+  useEffect(() => {
+    try {
+      localStorage.setItem(SIDEBAR_STORAGE_KEY, JSON.stringify(sidebarCollapsed))
+    } catch (error) {
+      // 保存侧边栏状态失败，忽略错误
+    }
+  }, [sidebarCollapsed])
 
   // 从本地存储加载对话
   useEffect(() => {
@@ -267,6 +290,10 @@ const ChatPage = () => {
     setShowSandboxPicker(true)
   }
 
+  const toggleSidebar = () => {
+    setSidebarCollapsed(!sidebarCollapsed)
+  }
+
   const handleSend = async () => {
       if (!inputValue.trim() || isLoading) return
 
@@ -454,7 +481,10 @@ const ChatPage = () => {
   return (
     <div className="flex h-full bg-white">
       {/* 侧边栏 - 历史对话 */}
-      <div className="flex w-80 flex-col bg-gray-50 border-r border-gray-200">
+      <div className={cn(
+        "flex flex-col bg-gray-50 border-r border-gray-200 transition-all duration-300 ease-in-out",
+        sidebarCollapsed ? "w-0 overflow-hidden" : "w-80"
+      )}>
         {/* 侧边栏头部 */}
         <div className="flex items-center justify-between px-4 py-4 border-b border-gray-200">
           <div className="flex items-center gap-3">
@@ -534,6 +564,18 @@ const ChatPage = () => {
         {/* 头部 */}
         <div className="flex items-center justify-between bg-white px-6 py-4 border-b border-gray-200">
           <div className="flex items-center gap-3">
+            {/* 折叠按钮 */}
+            <button
+              onClick={toggleSidebar}
+              className="flex h-8 w-8 items-center justify-center rounded-lg text-gray-500 hover:bg-gray-100 hover:text-gray-700 transition-colors"
+              title={sidebarCollapsed ? "展开侧边栏" : "折叠侧边栏"}
+            >
+              {sidebarCollapsed ? (
+                <RiMenuLine className="h-4 w-4" />
+              ) : (
+                <RiCloseLine className="h-4 w-4" />
+              )}
+            </button>
             <h1 className="text-lg font-medium text-gray-900">
               {currentConversationId 
                 ? conversations.find(c => c.id === currentConversationId)?.title || 'Python数据分析脚本'
