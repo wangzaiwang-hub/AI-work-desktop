@@ -3,30 +3,103 @@ import { useGlobalPublicStore } from '@/context/global-public-context'
 
 import useDocumentTitle from '@/hooks/use-document-title'
 import { cn } from '@/utils/classnames'
-import Header from './_header'
 
 export default function SignInLayout({ children }: any) {
   const { systemFeatures } = useGlobalPublicStore()
   useDocumentTitle('')
   return (
     <>
-      <div className={cn('flex min-h-screen w-full justify-center bg-background-default-burn p-6')}>
-        <div className={cn('flex w-full shrink-0 flex-col items-center rounded-2xl border border-effects-highlight bg-background-default-subtle')}>
-          <Header />
-          <div className={cn('flex w-full grow flex-col items-center justify-center px-6 md:px-[108px]')}>
-            <div className="flex flex-col md:w-[400px]">
-              {children}
+      <div className="min-h-screen w-full bg-white flex items-center justify-center p-4">
+        {/* 居中的登录卡片 */}
+        <div className="w-full max-w-4xl bg-white rounded-2xl shadow-2xl overflow-hidden relative">
+          {/* Logo区域 - 左上角 */}
+          <div className="absolute top-6 left-6 z-20 flex items-center gap-3">
+            <img 
+              src="/logo/logo-monochrome-white.png" 
+              alt="CheersAI Logo" 
+              className="w-10 h-10 rounded-xl"
+            />
+            <span className="text-xl font-bold text-white">CheersAI企业版</span>
+          </div>
+
+          <div className="flex min-h-[480px]">
+            {/* 左侧宣传区域 */}
+            <div className="hidden md:flex md:w-1/2 bg-gradient-to-br from-blue-500 via-blue-600 to-blue-700 relative overflow-hidden">
+              {/* 背景装饰 */}
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-400/20 to-transparent"></div>
+              
+              <div className="relative z-10 flex flex-col justify-center px-8 py-8 text-white pt-20">
+                {/* 主标题 */}
+                <h1 className="text-2xl font-bold mb-4 leading-tight">
+                  开启智能办公新体验
+                </h1>
+                
+                {/* 副标题 */}
+                <p className="text-sm mb-4 text-blue-100">
+                  企业级AI助手平台，提升团队协作效率
+                </p>
+
+                {/* 特性列表 */}
+                <div className="space-y-3 mb-6">
+                  <div className="flex items-center gap-2">
+                    <div className="w-1.5 h-1.5 bg-white rounded-full"></div>
+                    <span className="text-sm text-blue-100">【智能对话】多模态AI交互体验</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-1.5 h-1.5 bg-white rounded-full"></div>
+                    <span className="text-sm text-blue-100">【数据安全】企业级安全防护</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-1.5 h-1.5 bg-white rounded-full"></div>
+                    <span className="text-sm text-blue-100">【工作流程】智能化业务流程</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-1.5 h-1.5 bg-white rounded-full"></div>
+                    <span className="text-sm text-blue-100">【团队协作】高效协同办公</span>
+                  </div>
+                </div>
+
+                {/* 底部插图区域 */}
+                <div className="flex justify-center mt-auto">
+                  <div className="w-48 h-32 bg-white/10 rounded-xl backdrop-blur-sm flex items-center justify-center">
+                    <div className="text-center">
+                      <div className="w-12 h-12 bg-white/20 rounded-full mx-auto mb-2 flex items-center justify-center">
+                        <span className="text-lg">🤖</span>
+                      </div>
+                      <p className="text-xs text-blue-100">智能AI助手</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* 右侧登录区域 */}
+            <div className="w-full md:w-1/2 flex flex-col">
+              {/* 头部 */}
+              <div className="flex justify-end items-center p-6">
+                <div>
+                  <span className="text-xs text-gray-500">还没有账号？</span>
+                  <a href="/signup" className="text-xs text-blue-600 hover:text-blue-700 ml-1">立即注册</a>
+                </div>
+              </div>
+
+              {/* 登录表单区域 */}
+              <div className="flex-1 flex items-center justify-center px-6">
+                <div className="w-full max-w-sm">
+                  {children}
+                </div>
+              </div>
+
+              {/* 底部版权 */}
+              {systemFeatures.branding.enabled === false && (
+                <div className="p-6 text-center">
+                  <p className="text-xs text-gray-400">
+                    © {new Date().getFullYear()} CheersAI. All rights reserved.
+                  </p>
+                </div>
+              )}
             </div>
           </div>
-          {systemFeatures.branding.enabled === false && (
-            <div className="system-xs-regular px-8 py-6 text-text-tertiary">
-              ©
-              {' '}
-              {new Date().getFullYear()}
-              {' '}
-              LangGenius, Inc. All rights reserved.
-            </div>
-          )}
         </div>
       </div>
     </>

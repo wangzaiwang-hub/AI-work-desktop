@@ -4,6 +4,7 @@ import { AppInitializer } from '@/app/components/app-initializer'
 import AmplitudeProvider from '@/app/components/base/amplitude'
 import GA, { GaType } from '@/app/components/base/ga'
 import Zendesk from '@/app/components/base/zendesk'
+import { CustomerServiceFloat } from '@/app/components/base/customer-service-float'
 import GotoAnything from '@/app/components/goto-anything'
 import SideNav from '@/app/components/header/side-nav'
 import ReadmePanel from '@/app/components/plugins/readme-panel'
@@ -34,6 +35,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
                 <ReadmePanel />
                 <GotoAnything />
                 <Splash />
+                <CustomerServiceFloat />
               </ModalContextProvider>
             </ProviderContextProvider>
           </EventEmitterContextProvider>

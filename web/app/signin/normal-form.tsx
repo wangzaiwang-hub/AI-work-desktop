@@ -16,7 +16,6 @@ import MailAndCodeAuth from './components/mail-and-code-auth'
 import MailAndPasswordAuth from './components/mail-and-password-auth'
 import SocialAuth from './components/social-auth'
 import SSOAuth from './components/sso-auth'
-import Split from './split'
 import { resolvePostLoginRedirect } from './utils/post-login-redirect'
 
 const NormalForm = () => {
@@ -140,31 +139,30 @@ const NormalForm = () => {
 
   return (
     <>
-      <div className="mx-auto mt-8 w-full">
+      <div className="w-full">
         {isInviteLink
           ? (
-              <div className="mx-auto w-full">
-                <h2 className="title-4xl-semi-bold text-text-primary">
-                  {t('join', { ns: 'login' })}
-                  {workspaceName}
+              <div className="text-center mb-8">
+                <h2 className="text-2xl font-bold text-gray-900 mb-2">
+                  加入 {workspaceName}
                 </h2>
                 {!systemFeatures.branding.enabled && (
-                  <p className="body-md-regular mt-2 text-text-tertiary">
-                    {t('joinTipStart', { ns: 'login' })}
-                    {workspaceName}
-                    {t('joinTipEnd', { ns: 'login' })}
+                  <p className="text-gray-600">
+                    您已被邀请加入 {workspaceName} 工作空间
                   </p>
                 )}
               </div>
             )
           : (
-              <div className="mx-auto w-full">
-                <h2 className="title-4xl-semi-bold text-text-primary">{systemFeatures.branding.enabled ? t('pageTitleForE', { ns: 'login' }) : t('pageTitle', { ns: 'login' })}</h2>
-                <p className="body-md-regular mt-2 text-text-tertiary">{t('welcome', { ns: 'login' })}</p>
+              <div className="text-center mb-8">
+                <h2 className="text-2xl font-bold text-gray-900 mb-2">
+                  {systemFeatures.branding.enabled ? '登录' : '欢迎回来'}
+                </h2>
+                <p className="text-gray-600">请登录您的账户以继续使用</p>
               </div>
             )}
         <div className="relative">
-          <div className="mt-6 flex flex-col gap-3">
+          <div className="flex flex-col gap-4">
             {systemFeatures.enable_social_oauth_login && <SocialAuth />}
             {systemFeatures.sso_enforced_for_signin && (
               <div className="w-full">
@@ -174,11 +172,11 @@ const NormalForm = () => {
           </div>
 
           {showORLine && (
-            <div className="relative mt-6">
+            <div className="relative my-6">
               <div className="flex items-center">
-                <div className="h-px flex-1 bg-gradient-to-r from-background-gradient-mask-transparent to-divider-regular"></div>
-                <span className="system-xs-medium-uppercase px-3 text-text-tertiary">{t('or', { ns: 'login' })}</span>
-                <div className="h-px flex-1 bg-gradient-to-l from-background-gradient-mask-transparent to-divider-regular"></div>
+                <div className="h-px flex-1 bg-gray-200"></div>
+                <span className="px-4 text-sm text-gray-500 bg-white">或</span>
+                <div className="h-px flex-1 bg-gray-200"></div>
               </div>
             </div>
           )}
@@ -189,8 +187,8 @@ const NormalForm = () => {
                   <>
                     <MailAndCodeAuth isInvite={isInviteLink} />
                     {systemFeatures.enable_email_password_login && (
-                      <div className="cursor-pointer py-1 text-center" onClick={() => { updateAuthType('password') }}>
-                        <span className="system-xs-medium text-components-button-secondary-accent-text">{t('usePassword', { ns: 'login' })}</span>
+                      <div className="cursor-pointer py-2 text-center" onClick={() => { updateAuthType('password') }}>
+                        <span className="text-sm text-blue-600 hover:text-blue-700">使用密码登录</span>
                       </div>
                     )}
                   </>
@@ -199,76 +197,68 @@ const NormalForm = () => {
                   <>
                     <MailAndPasswordAuth isInvite={isInviteLink} isEmailSetup={systemFeatures.is_email_setup} allowRegistration={systemFeatures.is_allow_register} />
                     {systemFeatures.enable_email_code_login && (
-                      <div className="cursor-pointer py-1 text-center" onClick={() => { updateAuthType('code') }}>
-                        <span className="system-xs-medium text-components-button-secondary-accent-text">{t('useVerificationCode', { ns: 'login' })}</span>
+                      <div className="cursor-pointer py-2 text-center" onClick={() => { updateAuthType('code') }}>
+                        <span className="text-sm text-blue-600 hover:text-blue-700">使用验证码登录</span>
                       </div>
                     )}
                   </>
                 )}
-                <Split className="mb-5 mt-4" />
               </>
             )
           }
 
           {systemFeatures.is_allow_register && authType === 'password' && (
-            <div className="mb-3 text-[13px] font-medium leading-4 text-text-secondary">
-              <span>{t('signup.noAccount', { ns: 'login' })}</span>
+            <div className="mt-6 text-center text-sm text-gray-600">
+              <span>还没有账号？</span>
               <Link
-                className="text-text-accent"
+                className="text-blue-600 hover:text-blue-700 ml-1"
                 href="/signup"
               >
-                {t('signup.signUp', { ns: 'login' })}
+                立即注册
               </Link>
             </div>
           )}
           {allMethodsAreDisabled && (
             <>
-              <div className="rounded-lg bg-gradient-to-r from-workflow-workflow-progress-bg-1 to-workflow-workflow-progress-bg-2 p-4">
-                <div className="shadows-shadow-lg mb-2 flex h-10 w-10 items-center justify-center rounded-xl bg-components-card-bg shadow">
-                  <RiDoorLockLine className="h-5 w-5" />
+              <div className="rounded-lg bg-red-50 border border-red-200 p-4">
+                <div className="flex items-center mb-2">
+                  <RiDoorLockLine className="h-5 w-5 text-red-500 mr-2" />
+                  <p className="text-sm font-medium text-red-800">无可用登录方式</p>
                 </div>
-                <p className="system-sm-medium text-text-primary">{t('noLoginMethod', { ns: 'login' })}</p>
-                <p className="system-xs-regular mt-1 text-text-tertiary">{t('noLoginMethodTip', { ns: 'login' })}</p>
-              </div>
-              <div className="relative my-2 py-2">
-                <div className="absolute inset-0 flex items-center" aria-hidden="true">
-                  <div className="h-px w-full bg-gradient-to-r from-background-gradient-mask-transparent via-divider-regular to-background-gradient-mask-transparent"></div>
-                </div>
+                <p className="text-sm text-red-700">请联系管理员配置登录方式</p>
               </div>
             </>
           )}
           {!systemFeatures.branding.enabled && (
             <>
-              <div className="system-xs-regular mt-2 block w-full text-text-tertiary">
-                {t('tosDesc', { ns: 'login' })}
-              &nbsp;
+              <div className="mt-6 text-xs text-gray-500 text-center">
+                登录即表示您同意我们的
                 <Link
-                  className="system-xs-medium text-text-secondary hover:underline"
+                  className="text-blue-600 hover:text-blue-700 mx-1"
                   target="_blank"
                   rel="noopener noreferrer"
                   href="https://dify.ai/terms"
                 >
-                  {t('tos', { ns: 'login' })}
+                  服务条款
                 </Link>
-              &nbsp;&&nbsp;
+                和
                 <Link
-                  className="system-xs-medium text-text-secondary hover:underline"
+                  className="text-blue-600 hover:text-blue-700 ml-1"
                   target="_blank"
                   rel="noopener noreferrer"
                   href="https://dify.ai/privacy"
                 >
-                  {t('pp', { ns: 'login' })}
+                  隐私政策
                 </Link>
               </div>
               {IS_CE_EDITION && (
-                <div className="w-hull system-xs-regular mt-2 block text-text-tertiary">
-                  {t('goToInit', { ns: 'login' })}
-              &nbsp;
+                <div className="mt-2 text-xs text-gray-500 text-center">
+                  需要初始化系统？
                   <Link
-                    className="system-xs-medium text-text-secondary hover:underline"
+                    className="text-blue-600 hover:text-blue-700 ml-1"
                     href="/install"
                   >
-                    {t('setAdminAccount', { ns: 'login' })}
+                    设置管理员账户
                   </Link>
                 </div>
               )}
