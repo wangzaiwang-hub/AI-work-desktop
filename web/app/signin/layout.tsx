@@ -22,7 +22,7 @@ export default function SignInLayout({ children }: any) {
             <span className="text-xl font-bold text-white">CheersAI企业版</span>
           </div>
 
-          <div className="flex min-h-[480px]">
+          <div className="flex min-h-[600px]">
             {/* 左侧宣传区域 */}
             <div className="hidden md:flex md:w-1/2 bg-gradient-to-br from-blue-500 via-blue-600 to-blue-700 relative overflow-hidden">
               {/* 背景装饰 */}
@@ -30,43 +30,43 @@ export default function SignInLayout({ children }: any) {
               
               <div className="relative z-10 flex flex-col justify-center px-8 py-8 text-white pt-20">
                 {/* 主标题 */}
-                <h1 className="text-2xl font-bold mb-4 leading-tight">
+                <h1 className="text-3xl font-bold mb-6 leading-tight">
                   开启智能办公新体验
                 </h1>
                 
                 {/* 副标题 */}
-                <p className="text-sm mb-4 text-blue-100">
+                <p className="text-lg mb-8 text-blue-100">
                   企业级AI助手平台，提升团队协作效率
                 </p>
 
                 {/* 特性列表 */}
-                <div className="space-y-3 mb-6">
-                  <div className="flex items-center gap-2">
-                    <div className="w-1.5 h-1.5 bg-white rounded-full"></div>
-                    <span className="text-sm text-blue-100">【智能对话】多模态AI交互体验</span>
+                <div className="space-y-4 mb-8">
+                  <div className="flex items-center gap-3">
+                    <div className="w-2 h-2 bg-white rounded-full"></div>
+                    <span className="text-blue-100">【智能对话】多模态AI交互体验</span>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-1.5 h-1.5 bg-white rounded-full"></div>
-                    <span className="text-sm text-blue-100">【数据安全】企业级安全防护</span>
+                  <div className="flex items-center gap-3">
+                    <div className="w-2 h-2 bg-white rounded-full"></div>
+                    <span className="text-blue-100">【数据安全】企业级安全防护</span>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-1.5 h-1.5 bg-white rounded-full"></div>
-                    <span className="text-sm text-blue-100">【工作流程】智能化业务流程</span>
+                  <div className="flex items-center gap-3">
+                    <div className="w-2 h-2 bg-white rounded-full"></div>
+                    <span className="text-blue-100">【工作流程】智能化业务流程</span>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-1.5 h-1.5 bg-white rounded-full"></div>
-                    <span className="text-sm text-blue-100">【团队协作】高效协同办公</span>
+                  <div className="flex items-center gap-3">
+                    <div className="w-2 h-2 bg-white rounded-full"></div>
+                    <span className="text-blue-100">【团队协作】高效协同办公</span>
                   </div>
                 </div>
 
                 {/* 底部插图区域 */}
                 <div className="flex justify-center mt-auto">
-                  <div className="w-48 h-32 bg-white/10 rounded-xl backdrop-blur-sm flex items-center justify-center">
+                  <div className="w-56 h-36 bg-white/10 rounded-xl backdrop-blur-sm flex items-center justify-center">
                     <div className="text-center">
-                      <div className="w-12 h-12 bg-white/20 rounded-full mx-auto mb-2 flex items-center justify-center">
-                        <span className="text-lg">🤖</span>
+                      <div className="w-16 h-16 bg-white/20 rounded-full mx-auto mb-3 flex items-center justify-center">
+                        <span className="text-2xl">🤖</span>
                       </div>
-                      <p className="text-xs text-blue-100">智能AI助手</p>
+                      <p className="text-sm text-blue-100">智能AI助手</p>
                     </div>
                   </div>
                 </div>
@@ -74,7 +74,7 @@ export default function SignInLayout({ children }: any) {
             </div>
 
             {/* 右侧登录区域 */}
-            <div className="w-full md:w-1/2 flex flex-col">
+            <div className="w-full md:w-1/2 flex flex-col bg-gray-50">
               {/* 头部 */}
               <div className="flex justify-end items-center p-6">
                 <div>
